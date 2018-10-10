@@ -1,26 +1,8 @@
+//getting jquery going
 $(document).ready(function () {
 
+  //establishing variables
   var articleContainer = $(".article__container");
-
-
-  //adding new articles after scrape into a nice little format
-  function newArticle(article) {
-    var article = $("<div class='article'>");
-    var articleHeader = $("<div class='article__header'>").append(
-      $("<a class='article-link' target='_blank'>")
-        .attr("href", article.url)
-        .text(article.headline),
-    );
-
-    var articleSummary = $("<div class='article__summary'>").text(article.summary);
-    var saveButton = $("<a class='save'>Save</a>")
-
-    article.append(articleHeader, articleSummary, saveButton);
-    article.data("_id", article._id);
-    return article;
-  }
-
-
 
   //rendering all saved notes by pushing them to an array and then appending that array to the container
   function showSavedNotes(data) {
@@ -62,7 +44,7 @@ $(document).ready(function () {
   }
 
   // showing the list of articles inside the notes modal -- using bootstrap bootbox to save time
-  function showNotes(event) {
+  function articleNotes(event) {
     var currentArticle = $(this)
       .parents(".article")
       .data();
@@ -95,8 +77,11 @@ $(document).ready(function () {
     var newNote = $(".bootbox-body textarea")
       .val()
       .trim();
+
+    console.log(newNote);
     if (newNote) {
       noteData = { _headlineId: $(this).data("article")._id, noteText: newNote };
+      console.log(noteData);
       $.post("/api/notes", noteData).then(function () {
         bootbox.hideAll();
       });
@@ -114,6 +99,7 @@ $(document).ready(function () {
     });
   }
 
+  //the nuclear option!! 
   function clearArticles() {
     $.get("api/clear")
       .then(function () {
@@ -123,7 +109,7 @@ $(document).ready(function () {
   }
 
   //listning for clicks, and doing the thing
-  $(document).on("click", ".notes", showNotes);
+  $(document).on("click", ".notes", articleNotes);
   $(document).on("click", ".saveNote", saveNotes);
   $(document).on("click", ".deleteNote", deleteNotes);
   $(document).on("click", ".delete", deleteArticle);

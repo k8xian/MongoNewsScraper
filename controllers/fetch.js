@@ -17,7 +17,7 @@ module.exports = {
         }
         else {
           res.json({
-            message: "Added " + dbHeadline.length + " new articles."
+            message: "Added " + dbHeadline.length + " articles."
           });
         }
       })

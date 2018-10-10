@@ -4,14 +4,14 @@ $(document).ready(function () {
   //so we can append stuff to this later
   var articleContainer = $(".article__container");
 
-  //populating the scraped articles
-  function populateArticles(articles) {
-    var articleList = [];
-    for (var i in articles) {
-      articleList.push(newArticle(articles[i]));
-    }
-    articleContainer.append(articleList);
-  }
+  // //populating the scraped articles
+  // function populateArticles(articles) {
+  //   var articleList = [];
+  //   for (var i in articles) {
+  //     articleList.push(newArticle(articles[i]));
+  //   }
+  //   articleContainer.append(articleList);
+  // }
 
 
   //adding new articles after scrape into a nice little format
@@ -42,7 +42,6 @@ $(document).ready(function () {
       .parents(".article")
       .remove();
 
-      console.log(articleToSave._id);
     // changing saved to true
     articleToSave.saved = true;
     $.ajax({

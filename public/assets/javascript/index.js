@@ -7,7 +7,7 @@ $(document).ready(function () {
   //adding a saved article to the db so it renders on this page and stops rendering on this
   function saveArticles() {
 
-    var articleToSave = $(this)
+    var savingArticle = $(this)
       .parents(".article")
       .data();
 
@@ -16,14 +16,14 @@ $(document).ready(function () {
       .remove();
 
     console.log("I'm trying to save!");
-    console.log("ID of article I'm trying to save: " + articleToSave._id);
+    console.log("ID of article I'm trying to save: " + savingArticle._id);
     // changing saved to true
-    articleToSave.saved = true;
-    console.log(articleToSave.saved);
+    savingArticle.saved = true;
+    console.log(savingArticle.saved);
     $.ajax({
       method: "PUT",
-      url: "/api/headlines/" + articleToSave._id,
-      data: articleToSave
+      url: "/api/headlines/" + savingArticle._id,
+      data: savingArticle
     }).then(function (data) {
       if (data.saved) {
         location.reload();

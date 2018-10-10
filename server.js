@@ -25,7 +25,7 @@ app.use(express.static("public"));
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/wapoHeadlines";
 
 //mongoDB
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 //making it all go
 app.listen(PORT, function() {

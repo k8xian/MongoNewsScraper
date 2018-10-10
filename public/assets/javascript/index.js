@@ -4,33 +4,6 @@ $(document).ready(function () {
   //so we can append stuff to this later
   var articleContainer = $(".article__container");
 
-  // //populating the scraped articles
-  // function populateArticles(articles) {
-  //   var articleList = [];
-  //   for (var i in articles) {
-  //     articleList.push(newArticle(articles[i]));
-  //   }
-  //   articleContainer.append(articleList);
-  // }
-
-
-  //adding new articles after scrape into a nice little format
-  function newArticle(article) {
-    var article = $("<div class='article'>");
-    var articleHeader = $("<div class='article__header'>").append(
-      $("<a class='article-link' target='_blank'>")
-        .attr("href", article.url)
-        .text(article.headline),
-    );
-
-    var articleSummary = $("<div class='article__summary'>").text(article.summary);
-    var saveButton = $("<a class='save'>Save</a>")
-
-    article.append(articleHeader, articleSummary, saveButton);
-    article.data("_id", article._id);
-    return article;
-  }
-
   //adding a saved article to the db so it renders on this page and stops rendering on this
   function saveArticles() {
 
@@ -42,6 +15,8 @@ $(document).ready(function () {
       .parents(".article")
       .remove();
 
+    console.log("I'm trying to save!");
+    console.log("ID of article I'm trying to save: " + articleToSave._id);
     // changing saved to true
     articleToSave.saved = true;
     $.ajax({

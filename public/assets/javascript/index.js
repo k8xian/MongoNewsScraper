@@ -19,6 +19,7 @@ $(document).ready(function () {
     console.log("ID of article I'm trying to save: " + articleToSave._id);
     // changing saved to true
     articleToSave.saved = true;
+    console.log(articleToSave.saved);
     $.ajax({
       method: "PUT",
       url: "/api/headlines/" + articleToSave._id,

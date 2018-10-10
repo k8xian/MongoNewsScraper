@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>The Washington Post (Scraper)</h1>
+  <h3>Democracy Dies in Darkness</h3>
+  <hr>
+  <ul>
+    <li>
+      <a class="options selected" href="/">Home
+      </a>
+    </li>
+    <li>
+      <a class="options" href="/saved">Saved</a>
+    </li>
+    <li>
+      <a class="options" id="scrape">Scrape</a>
+    </li>
+    <li>
+      <a class="options" id="clear">Clear</a>
+    </li>
+  </ul>
+  <div class="article__container">
+    {{#each articles}}
+    <div data-_id="{{this._id}}" class="article">
+      <div class="article__header">
+      <a class="article__link" target="_blank" href="{{this.url}}">{{this.headline}}</a>
+      </div>
+      <div class="article__summary">{{this.summary}}</div>
+      <a class="save">Save</a>
+    </div>
+    {{/each}} {{#unless articles.length}}
+    <div class='noArticles'>
+      <h4>Sorry, no new articles. Click scrape above to go get some!</h4>
+    </div>
+    {{/unless}}
+  </div>
+</div>
+<footer class="footer">
+    <a class="footer__link" href="https://k8xian.github.io">© 2018 Kate Christian</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/assets/javascript/index.js"></script>

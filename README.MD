@@ -1,4 +1,4 @@
-# Eat-Da-Burger! 
+# Washington Post Scraper
 * By Kate Christian | [Portfolio: k8xian.github.io](https://k8xian.github.io)
 * for [Northwestern University's Full Stack Flex Coding Bootcamp](https://bootcamp.northwestern.edu/coding/)
 * The Washington Post Scraper is a Mongoose/MongoDB webapp that scrapes the WaPo site, storing articles, and allows the user to save the articles and add notes to them.

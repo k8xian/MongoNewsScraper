@@ -1,54 +1,48 @@
 //getting set to do the thing
-$(document).ready(function () {
+$(document).ready(function() {
 
   //so we can append stuff to this later
-  var articleContainer = $(".article__container");
+ var articleContainer = $(".article-container");
 
-  //adding a saved article to the db so it renders on this page and stops rendering on this
-  function saveArticles() {
+ //adding a saved article to the db so it renders on this page and stops rendering on this
+ function handleArticleSave() {
+   var articleToSave = $(this)
+     .parents(".article")
+     .data();
 
-    var savingArticle = $(this)
-      .parents(".article")
-      .data();
+   $(this)
+     .parents(".article")
+     .remove();
 
-    $(this)
-      .parents(".article")
-      .remove();
+   articleToSave.saved = true;
+   $.ajax({
+     method: "PUT",
+     url: "/api/headlines/" + articleToSave._id,
+     data: articleToSave
+   }).then(function(data) {
+     if (data.saved) {
+       location.reload();
+     }
+   });
+ }
 
-    console.log("I'm trying to save!");
-    console.log("ID of article I'm trying to save: " + savingArticle._id);
-    // changing saved to true
-    savingArticle.saved = true;
-    console.log(savingArticle.saved);
-    $.ajax({
-      method: "PUT",
-      url: "/api/headlines/" + savingArticle._id,
-      data: savingArticle
-    }).then(function (data) {
-      if (data.saved) {
-        location.reload();
-      }
-    });
-  }
+ //scraping articles
+ function handleArticleScrape() {
+   $.get("/api/fetch").then(function(data) {
+     location.reload();
+   });
+ }
 
-  //scraping articles
-  function scrapeArticles() {
-    $.get("/api/fetch").then(function (data) {
-      location.reload();
-    });
-  }
+ //nuking everything
+ function handleArticleClear() {
+   $.get("api/clear").then(function() {
+     articleContainer.empty();
+     location.reload();
+   });
+ }
 
-  //nuking everything
-  function clearArticles() {
-    $.get("api/clear").then(function () {
-      articleContainer.empty();
-      location.reload();
-    });
-  }
-
-
-  //listening for events to do the thing
-  $(document).on("click", ".save", saveArticles);
-  $(document).on("click", "#scrape", scrapeArticles);
-  $(document).on("click", "#clear", clearArticles);
+ //listening for events to do the thing
+ $(document).on("click", ".save", handleArticleSave);
+ $(document).on("click", "#scrape", handleArticleScrape);
+ $(document).on("click", "#clear", handleArticleClear);
 });

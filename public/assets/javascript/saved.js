@@ -12,7 +12,7 @@ $(document).ready(function() {
     var currentNote;
     if (!data.notes.length) {
       //Adding a default note if there aren't notes
-      currentNote = $("<li class='saved-notes'>No notes. Add one if you like..</li>");
+      currentNote = $("<li class='saved-notes'>No notes. Add one if you like...</li>");
       //Adding a default note
       notesArray.push(currentNote);
     } else {

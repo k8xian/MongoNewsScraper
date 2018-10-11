@@ -6,11 +6,16 @@
 **Deployment:  [https://mongonews-k8xian.herokuapp.com](https://mongonews-k8xian.herokuapp.com)**
 
 ## Development
-* Mongoose / MongoDB in a MVC model structure
+* Mongoose / MongoDB in a MVC model
+    * express
+    * express-handlebars
+    * mongoose
+    * cheerio
+    * axios
 
 ## Design
-* Elements imitate certain elements on the WaPo site
-* Cute favicon! Also responsive
+* Elements imitate certain design elements on the WaPo site
+* Mobile responsive 
 
 ## Instructions for running locally
 * clone this [repository](https://github.com/k8xian/MongoNewsScraper) to your computer
